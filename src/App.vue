@@ -1,8 +1,10 @@
 <template>
     <div class="container">
         <SearchBar @termChange="onTermChange"></SearchBar>
-        <VideoDetails :video="video"></VideoDetails>
-        <VideoList @videoSelect="onVideoSelect" :videos="videos"></VideoList>
+        <div class="row">
+            <VideoDetails :video="selectedVideo"></VideoDetails>
+            <VideoList @videoSelect="onVideoSelect" :videos="videos"></VideoList>
+        </div>
     </div>
 </template>
 
@@ -21,13 +23,12 @@ export default {
         VideoDetails
     },
     data(){
-        return { videos: [] };
+        return { videos: [], selectedVideo: null };
     },
     methods: {
         onVideoSelect(video){
             // eslint-disable-next-line no-console
-            console.log(video);
-            this.video = video;
+            this.selectedVideo = video;
         },
         onTermChange(searchTearm){
 
